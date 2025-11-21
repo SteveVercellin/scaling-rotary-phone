@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moduli Riparazione - Andrea Liberati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        input, textarea, select {
+            background: transparent;
+            border-bottom: 1px dashed #cbd5e1;
+            width: 100%;
+            padding: 2px 0;
+            outline: none;
+            font-family: inherit;
+            color: #1f2937;
+        }
+
+        input:focus, textarea:focus {
+            border-bottom: 1px solid #000;
+            background-color: #f9fafb;
+        }
+
+        .legal-text {
+            font-size: 8px;
+            line-height: 1.2;
+            text-align: justify;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+            .a4-page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                min-height: auto; /* Allow auto height for print */
+                height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+            input, textarea {
+                border: none;
+                resize: none;
+            }
+            /* Force inputs to look like text */
+            input::placeholder, textarea::placeholder {
+                color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Control Panel -->
+    <div class="no-print fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 font-bold flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Stampa Documenti
+        </button>
+    </div>
+
+    <!-- DOCUMENTO 1: ACCETTAZIONE / ORDINE DI RIPARAZIONE -->
+    <div class="a4-page">
+        <!-- Header -->
+        <div class="text-center mb-6 border-b-2 border-gray-800 pb-4">
+            <h1 class="text-3xl font-bold uppercase tracking-wide text-gray-900">ANDREA LIBERATI</h1>
+            <p class="text-sm text-gray-600 mt-1">Corso Umberto 1 140, Montesilvano (PE) 65015 | P.IVA: 01981070673</p>
+            <p class="text-sm text-gray-600">Tel/Whatsapp: 0858127943 | Email: montesilvano@email.it</p>
+        </div>
+
+        <!-- Info Cliente e Ordine -->
+        <div class="grid grid-cols-2 gap-8 mb-6">
+            <div>
+                <h3 class="font-bold text-gray-800 border-b border-gray-300 mb-2">Dati Cliente</h3>
+                <div class="space-y-2 text-sm">
+                    <div>
+                        <label class="text-gray-500 text-xs">Nome e Cognome</label>
+                        <input type="text" value="Pepe, Marco" class="font-bold">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 text-xs">Telefono</label>
+                        <input type="text" value="334 26 20 286">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 text-xs">Email</label>
+                        <input type="text" value="marcopepe28@yahoo.it">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-gray-800 border-b border-gray-300 mb-2">Dettagli Ordine</h3>
+                <div class="space-y-2 text-sm">
+                    <div>
+                        <label class="text-gray-500 text-xs">ID Ordine</label>
+                        <input type="text" value="1100162" class="font-bold">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 text-xs">Creato il</label>
+                        <input type="text" value="12 Aprile 2025">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 text-xs">Stato</label>
+                        <input type="text" value="Accettazione" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Dispositivo -->
+        <div class="bg-gray-50 p-4 border border-gray-200 rounded mb-6">
+            <h3 class="font-bold text-gray-800 mb-3">Dispositivo e Diagnosi</h3>
+            <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+                <div>
+                    <label class="text-gray-500 text-xs block">Modello / Colore / GB</label>
+                    <input type="text" value="Apple iPhone 13 Pro | 256GB | Sierra Blue" class="font-semibold">
+                </div>
+                <div>
+                    <label class="text-gray-500 text-xs block">Codice di Sblocco</label>
+                    <input type="text" value="269526" class="font-semibold">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="text-gray-500 text-xs block">Commenti Check-in</label>
+                <textarea rows="2" class="w-full text-sm">Telefono caduto in acqua, problemi nella ricarica del dispositivo.</textarea>
+            </div>
+            <div class="text-xs text-red-600 font-bold border-l-4 border-red-500 pl-2 mt-2">
+                NOTA: Dispositivo entrato in contatto con liquidi. Qualsiasi tipo di riparazione necessaria sarà da intendersi priva di garanzia ed eseguita a titolo di tentativo di recupero dati.
+            </div>
+        </div>
+
+        <!-- Preventivo Semplificato -->
+        <div class="mb-4">
+            <h3 class="font-bold text-gray-800 border-b border-gray-300 mb-2">Interventi Previsti</h3>
+            <table class="w-full text-sm text-left">
+                <thead>
+                    <tr class="text-gray-500 border-b">
+                        <th class="py-1">Descrizione</th>
+                        <th class="py-1 text-right">Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2"><input type="text" value="Preventivo di riparazione / Diagnosi"></td>
+                        <td class="py-2 text-right text-gray-400 italic">--</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Termini Legali (Testo estratto e adattato) -->
+        <div class="mb-4">
+            <h4 class="text-xs font-bold uppercase mb-1">Termini e Condizioni</h4>
+            <div class="legal-text text-gray-600 columns-2 gap-4">
+                <p class="mb-1"><strong>1. TERMINI GENERALI:</strong> Il Cliente mediante la sottoscrizione del presente ordine da incarico al Centro Assistenza di provvedere alla riparazione. Dal momento della sottoscrizione, la responsabilità dell'apparecchiatura è assunta dal Centro secondo la diligenza del buon padre di famiglia.</p>
+                <p class="mb-1"><strong>2. TERMINI DELL'ACCORDO:</strong> Il presente ordine riporta i dati del dispositivo e del cliente. Non ha rilevanza fiscale (non sostituisce scontrino/fattura). In caso di impossibilità alla riparazione, il cliente verrà informato.</p>
+                <p class="mb-1"><strong>3. CONDIZIONI DI RIPARAZIONE:</strong> Il Cliente deve eseguire backup prima della consegna. Il Centro non è responsabile per la perdita di dati. Per dispositivi IP67/IP68 non si garantisce l'impermeabilità post-riparazione.</p>
+                <p class="mb-1"><strong>4. RICAMBI E GARANZIA:</strong> Si utilizzano ricambi di qualità. La garanzia copre solo il componente sostituito (12 mesi generica, 6 mesi batterie, 3 mesi saldature/ossidi). Danni accidentali o manomissioni software non sono coperti.</p>
+                <p class="mb-1"><strong>5. MANCATO RITIRO:</strong> Trascorsi 60 giorni dalla comunicazione di fine lavori senza ritiro, il dispositivo potrà essere smaltito o ritenuto come bene abbandonato a copertura spese.</p>
+                <p class="mb-0"><strong>6. PRIVACY:</strong> I dati sono trattati per l'esecuzione del servizio nel rispetto del GDPR 2016/679.</p>
+            </div>
+        </div>
+
+        <!-- Firme -->
+        <div class="mt-8 border-t-2 border-gray-800 pt-4">
+            <div class="flex justify-between items-end">
+                <div class="w-1/3 text-center">
+                    <p class="text-xs text-gray-500 mb-4 text-left">Data: <input type="text" class="inline-block w-24 border-b border-gray-400" placeholder="GG/MM/AAAA"></p>
+                    <div class="border-b border-gray-900 mb-1 h-8"></div>
+                    <p class="text-xs font-bold uppercase">Firma del Cliente (per accettazione)</p>
+                </div>
+                <div class="w-1/3 text-center">
+                    <div class="border-b border-gray-900 mb-1 h-12"></div>
+                    <p class="text-xs font-bold uppercase">Timbro e Firma del Centro</p>
+                </div>
+            </div>
+            <div class="mt-4 text-[10px] text-gray-500 text-center">
+                Ai sensi degli artt. 1341 e 1342 C.C., il Cliente approva specificatamente le clausole sopra riportate (1-6).
+                <br><br>
+                <div class="w-1/3 mx-auto border-b border-gray-900 h-6"></div>
+                <span class="font-bold">Firma Cliente (doppia sottoscrizione)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCUMENTO 2: RICEVUTA / CONSEGNA / RITIRO -->
+    <div class="a4-page">
+        <!-- Header -->
+        <div class="text-center mb-6 border-b-2 border-gray-800 pb-4">
+            <h1 class="text-3xl font-bold uppercase tracking-wide text-gray-900">ANDREA LIBERATI</h1>
+            <p class="text-sm text-gray-600 mt-1">Servizi di Riparazione Smartphone e Tablet</p>
+        </div>
+
+        <!-- Info Rapide -->
+        <div class="flex justify-between items-start mb-6 border-b border-gray-200 pb-4">
+            <div class="w-1/2 pr-4">
+                <label class="text-xs text-gray-500 font-bold uppercase">Cliente</label>
+                <input type="text" value="Pepe, Marco" class="font-bold text-lg mb-1">
+                <input type="text" value="334 26 20 286" class="text-sm block">
+            </div>
+            <div class="w-1/2 pl-4 border-l border-gray-200 text-right">
+                <label class="text-xs text-gray-500 font-bold uppercase">Riferimento Ordine</label>
+                <input type="text" value="1100162" class="font-bold text-lg text-right mb-1">
+                <input type="text" value="12 Aprile 2025" class="text-sm text-right block">
+            </div>
+        </div>
+
+        <!-- Dettagli Intervento Eseguito -->
+        <div class="mb-8">
+            <h3 class="font-bold text-gray-800 bg-gray-100 p-2 rounded mb-4">Riepilogo Interventi Eseguiti</h3>
+            
+            <table class="w-full text-sm mb-4">
+                <thead>
+                    <tr class="text-left border-b-2 border-gray-300">
+                        <th class="pb-2 w-2/3">Intervento / Servizio</th>
+                        <th class="pb-2 w-1/3 text-left">Garanzia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="py-3 pr-2">
+                            <input type="text" value="Lavaggio e ripristino ricarica" class="font-semibold text-gray-800">
+                            <div class="text-xs text-gray-500 mt-1">Dispositivo: <input type="text" value="iPhone 13 Pro | 256GB" class="inline w-auto bg-transparent"></div>
+                        </td>
+                        <td class="py-3">
+                            <input type="text" value="Nessuna (Danno Liquidi)" class="text-red-600 font-medium">
+                        </td>
+                    </tr>
+                    <!-- Riga vuota per aggiunte manuali -->
+                    <tr class="border-b border-gray-100">
+                        <td class="py-3 pr-2"><input type="text" placeholder="Altro intervento..."></td>
+                        <td class="py-3"><input type="text" placeholder="--"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="p-4 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                <strong>Nota Importante:</strong> La copertura di garanzia offerta riguarda solo ed esclusivamente l'intervento effettuato e il componente sostituito. Problemi software, manomissioni successive o danni accidentali sono esclusi. Conservare questo documento come prova.
+            </div>
+        </div>
+
+        <!-- Privacy GDPR Estesa -->
+        <div class="mb-8">
+            <h4 class="text-xs font-bold uppercase mb-2 border-b border-gray-300 pb-1">Informativa Privacy (GDPR 2016/679)</h4>
+            <div class="legal-text text-gray-500">
+                <p class="mb-2">
+                    Il Cliente autorizza il trattamento dei propri dati personali. Il titolare del trattamento è Andrea Liberati. Il trattamento dei dati si svolge nel rispetto dei diritti e delle libertà fondamentali, nonché della dignità dell'interessato. Il conferimento dei dati è necessario ai fini dello svolgimento delle attività di riparazione.
+                </p>
+                <p>
+                    Il cliente ha diritto di ottenere l'aggiornamento, la rettifica e la cancellazione dei dati. I dati saranno conservati per il periodo necessario all'attività e agli obblighi fiscali.
+                </p>
+            </div>
+            <div class="mt-4 flex gap-8 text-xs">
+                <div>
+                    <span class="font-bold">Presa visione informativa:</span>
+                    <br>
+                    <span class="text-gray-400">Firma: ...........................................................</span>
+                </div>
+                <div>
+                    <span class="font-bold">Consenso al trattamento:</span>
+                    <br>
+                    <span class="text-gray-400">Firma: ...........................................................</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marketing / Info Box (Replica layout originale ma pulito) -->
+        <div class="grid grid-cols-2 gap-6 mb-8 mt-auto">
+            <div class="border border-gray-300 p-4 rounded text-center">
+                <h5 class="font-bold text-gray-800 mb-2">Trasferimento Dati</h5>
+                <p class="text-xs text-gray-600">Possiamo trasferire contatti, foto e chat nel totale rispetto della privacy tra dispositivi Apple e Android.</p>
+            </div>
+            <div class="border border-gray-300 p-4 rounded text-center">
+                <h5 class="font-bold text-gray-800 mb-2">Protezione Dispositivi</h5>
+                <p class="text-xs text-gray-600">Applicazione immediata di pellicole protettive per smartphone e tablet disponibili in negozio.</p>
+            </div>
+        </div>
+
+        <!-- Footer Firme Ritiro -->
+        <div class="mt-10 border-t-2 border-gray-800 pt-6">
+            <div class="flex justify-between items-end">
+                <div class="w-1/3 text-center">
+                    <p class="text-xs text-gray-500 mb-2 text-left">Data Ritiro: <input type="text" class="inline-block w-24 border-b border-gray-400" placeholder="GG/MM/AAAA"></p>
+                    <div class="border-b border-gray-900 mb-2 h-10"></div>
+                    <p class="text-xs font-bold uppercase">Firma Cliente (per ritiro)</p>
+                </div>
+                <div class="w-1/3 text-center">
+                    <div class="border-b border-gray-900 mb-2 h-16"></div>
+                    <p class="text-xs font-bold uppercase">Firma del Negozio</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
